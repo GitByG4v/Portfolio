@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Gavaskar | Admin Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="img/logo-transparent-00009C.png">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css"
+        href='https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic'>
+    <link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300,100'>
+    <style>
+        /* Admin-Specific Overrides for UI Consistency */
+        body { background: #fff; overflow-x: hidden; }
+        
+        #login-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url(img/mountain-dusk.jpeg) no-repeat center center fixed;
+            background-size: cover; z-index: 9999; display: flex; align-items: center; justify-content: center;
+        }
+        #login-overlay .overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.73) 17%, rgba(0, 0, 0, 0.4) 100%);
+        }
+        #login-container {
+            position: relative; z-index: 10000; width: 100%; max-width: 400px; padding: 40px;
+            text-align: center; color: #fff; background: rgba(0,0,0,0.4); border-radius: 4px; backdrop-filter: blur(10px);
+        }
+        #login-container h1 { color: #fff; font-size: 32px; margin-bottom: 20px; font-weight: 300; }
+        #login-container p { color: #ddd; margin-bottom: 30px; font-size: 14px; }
+        #login-container input {
+            width: 100%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3);
+            color: #fff; padding: 12px 15px; margin-bottom: 20px; border-radius: 2px; outline: none;
+            transition: all 0.3s ease;
+        }
+        #login-container input:focus {
+            background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.8);
+            box-shadow: 0 0 15px rgba(255,255,255,0.1);
+        }
+        #login-container button {
+            width: 100%; background: none; border: 2px solid #fff; color: #fff;
+            padding: 12px; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s;
+        }
+        #login-container button:hover { background: #fff; color: #000; }
+
+        /* Dashboard Sections */
+        .admin-section { padding: 100px 0; display: none; }
+        .admin-section.active { display: block; }
+        .admin-section h2 { margin-bottom: 50px; text-align: center; color: #111; font-weight: 300; }
+        
+        /* Form Styling */
+        .form-group label {
+            text-transform: uppercase; font-family: 'Lato', sans-serif; font-size: 12px;
+            color: #777; letter-spacing: 1.5px; margin-bottom: 10px; display: block;
+        }
+        .form-control {
+            border: none; border-bottom: 2px solid #eee; border-radius: 0; box-shadow: none;
+            padding: 10px 0; font-family: 'Roboto Slab', serif; font-size: 15px; transition: 0.3s;
+        }
+        .form-control:focus { border-color: #00009C; box-shadow: none; }
+        
+        /* Admin Specific Card styling */
+        .admin-card {
+            background: #fdfdfd; border: 1px solid #eee; padding: 25px; margin-bottom: 30px;
+            position: relative; transition: 0.3s;
+        }
+        .admin-card:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .admin-card h4 { font-size: 14px; color: #00009C; margin-bottom: 20px; }
+        
+        .btn-cms {
+            display: inline-block; padding: 10px 25px; background: none; border: 2px solid #000;
+            color: #000; font-family: 'Lato', sans-serif; text-transform: uppercase;
+            letter-spacing: 1px; font-size: 13px; font-weight: 400; transition: 0.3s; cursor: pointer;
+        }
+        .btn-cms:hover { background: #00009C; border-color: #00009C; color: #fff; text-decoration: none; }
+        .btn-cms-danger { border-color: #d9534f; color: #d9534f; }
+        .btn-cms-danger:hover { background: #d9534f; border-color: #d9534f; color: #fff; }
+
+        .save-bar {
+            position: fixed; bottom: 0; left: 0; width: 100%; background: #000; color: #fff;
+            padding: 15px 0; z-index: 1000; display: none;
+        }
+        .save-bar.visible { display: block; }
+        
+        /* Sidebar/Tabs Navigation consistent with Portfolio Navbar */
+        .admin-nav {
+            background: #000; position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .admin-nav .nav-tabs { border-bottom: none; display: flex; justify-content: center; }
+        .admin-nav .nav-tabs > li { float: none; }
+        .admin-nav .nav-tabs > li > a {
+            color: rgba(255,255,255,0.7); border: none; font-family: 'Lato', sans-serif;
+            text-transform: uppercase; font-size: 13px; letter-spacing: 1px; padding: 15px 20px;
+        }
+        .admin-nav .nav-tabs > li > a:hover { background: none; color: #fff; }
+        .admin-nav .nav-tabs > li.active > a { background: rgba(255,255,255,0.15); color: #fff; border: none; }
+
+        /* Animation */
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .spinner {
+            display: inline-block; width: 12px; height: 12px;
+            border: 2px solid rgba(0,0,0,0.1); border-radius: 50%;
+            border-top-color: #00009C; animation: spin 0.8s linear infinite;
+            margin-right: 8px; vertical-align: middle;
+        }
+        .btn-cms.loading .spinner { border-top-color: #fff; }
+        .btn-cms.loading { pointer-events: none; opacity: 0.8; background: #00009C; color: #fff; border-color: #00009C; }
+    </style>
+</head>
+
+<body>
+    <!-- Login Screen -->
+    <div id="login-overlay">
+        <div class="overlay"></div>
+        <div id="login-container">
+            <img src="img/logo.png" style="width:40px; margin-bottom: 20px;" />
+            <h1>Restricted Access</h1>
+            <p>Authorized personnel only. Please provide your credentials to proceed.</p>
+            <input type="text" id="admin-username" placeholder="Username" />
+            <input type="password" id="github-token" placeholder="Security Key / Password" />
+            <button id="login-btn"><i class="fa fa-lock"></i> Verify Identity</button>
+            <p style="margin-top: 20px;"><a href="index.html" style="color:#aaa; font-size:12px;">&larr; Back to Portfolio</a></p>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboard" style="display: none;">
+        <nav class="admin-nav">
+            <div class="container">
+                <ul class="nav nav-tabs" id="adminTabs">
+                    <li class="active"><a href="#hero" data-toggle="tab">Hero</a></li>
+                    <li><a href="#about" data-toggle="tab">About</a></li>
+                    <li><a href="#passion" data-toggle="tab">Passion</a></li>
+                    <li><a href="#experience" data-toggle="tab">Experience</a></li>
+                    <li><a href="#achievements" data-toggle="tab">Achievements</a></li>
+                    <li><a href="#projects" data-toggle="tab">Projects</a></li>
+                    <li><a href="#connect" data-toggle="tab">Connect</a></li>
+                    <li><a href="#resume-tab" data-toggle="tab">Resume</a></li>
+                    <li style="margin-left: auto;"><button class="btn-cms" id="logout-btn" style="border-color: rgba(255,255,255,0.5); color: #fff; margin-top: 5px;">Logout</button></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="container">
+            <div class="tab-content">
+                <!-- Hero Section -->
+                <div class="tab-pane active admin-section" id="hero">
+                    <h2>Manage Intro Content</h2>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <form id="hero-form">
+                                <div class="form-group">
+                                    <label>Main Title</label>
+                                    <input type="text" name="title" class="form-control" placeholder="Hi, I'm..." />
+                                </div>
+                                <div class="form-group">
+                                    <label>Subtitle / Role</label>
+                                    <input type="text" name="subtitle" class="form-control" placeholder="Computer Science Intern" />
+                                </div>
+                                <div class="form-group" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <label>Hero Section Background</label>
+                                            <input type="hidden" name="hero-bg" class="image-input" />
+                                            <input type="file" class="hidden-file-input" style="display:none;" onchange="handleFileUpload(this)">
+                                            <button type="button" class="btn-cms btn-xs" onclick="$(this).closest('.row, .form-group, .admin-card').find('input[type=file]').click()">Upload New Image</button>
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            <img src="" class="img-preview img-thumbnail" style="max-height: 100px;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Section -->
+                <div class="tab-pane admin-section" id="about">
+                    <h2>Manage About Content</h2>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <form id="about-form">
+                                <div class="form-group">
+                                    <label>Section Title</label>
+                                    <input type="text" name="about-title" class="form-control" placeholder="A Little Bit About Me" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Profile Description (Supports HTML)</label>
+                                    <textarea name="description" class="form-control" rows="8"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <label>Profile Image</label>
+                                            <input type="hidden" name="image" class="image-input" />
+                                            <input type="file" class="hidden-file-input" style="display:none;" onchange="handleFileUpload(this)">
+                                            <button type="button" class="btn-cms btn-xs" onclick="$(this).closest('.row, .form-group, .admin-card').find('input[type=file]').click()">Upload New Image</button>
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            <img src="" class="img-preview img-thumbnail" style="max-height: 100px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <h4>TL;DR? Proclamations</h4>
+                                <div id="tldr-list"></div>
+                                <button type="button" class="btn-cms" onclick="addTLDR()">+ Add Item</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Passion Section -->
+                <div class="tab-pane admin-section" id="passion">
+                    <h2>Manage Passions (Services)</h2>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <form id="passion-form">
+                                <div id="services-list"></div>
+                                <button type="button" class="btn-cms" onclick="addService()">+ Add Service Card</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience Section -->
+                <div class="tab-pane admin-section" id="experience">
+                    <h2>Tech Stack & Skills</h2>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <form id="experience-form">
+                                <div class="form-group">
+                                    <label>Experience Description</label>
+                                    <textarea name="description" class="form-control" rows="4"></textarea>
+                                </div>
+                                <hr />
+                                <h4>Tech Logos (Skills)</h4>
+                                <div id="skills-list" class="row"></div>
+                                <button type="button" class="btn-cms" onclick="addSkill()">+ Add Skill Logo</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievements Section -->
+                <div class="tab-pane admin-section" id="achievements">
+                    <h2>Achievements & Certificates</h2>
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <form id="achievements-form">
+                                <div id="achievements-list"></div>
+                                <button type="button" class="btn-cms" onclick="addAchievement()">+ Add Achievement</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects Section -->
+                <div class="tab-pane admin-section" id="projects">
+                    <h2>Work & Projects</h2>
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <form id="projects-form">
+                                <div id="projects-list"></div>
+                                <button type="button" class="btn-cms" onclick="addProject()">+ Add Project Card</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connect Section -->
+                <div class="tab-pane admin-section" id="connect">
+                    <h2>Connect & Footer</h2>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <form id="social-form">
+                                <h4>Social Links</h4>
+                                <div id="social-links-list"></div>
+                                <button type="button" class="btn-cms" onclick="addSocial()">+ Add Social Link</button>
+                            </form>
+                            <hr />
+                            <form id="contact-form" style="margin-top: 40px;">
+                                <h4>Contact Details</h4>
+                                <div class="form-group">
+                                    <label>Section Title</label>
+                                    <input type="text" name="contact-title" class="form-control" placeholder="Get In Touch!" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Email Address</label>
+                                    <input type="email" name="email" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Contact Message Prompt</label>
+                                    <textarea name="message" class="form-control" rows="3"></textarea>
+                                </div>
+                            </form>
+                            <hr />
+                            <form id="footer-form" style="margin-top: 40px;">
+                                <h4>Footer</h4>
+                                <div class="form-group">
+                                    <label>Copyright Text</label>
+                                    <input type="text" name="copyright" class="form-control" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resume Section -->
+                <div class="tab-pane admin-section" id="resume-tab">
+                    <h2>Manage Resume & CV</h2>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <form id="resume-admin-form">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <label>Resume Section Background</label>
+                                            <input type="hidden" name="resume-bg" class="image-input" />
+                                            <input type="file" class="hidden-file-input" style="display:none;" onchange="handleFileUpload(this)">
+                                            <button type="button" class="btn-cms btn-xs" onclick="$(this).closest('.row, .form-group, .admin-card').find('input[type=file]').click()">Upload New Image</button>
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            <img src="" class="img-preview img-thumbnail" style="max-height: 100px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 30px;">
+                                    <label>Professional CV / Résumé (PDF/Doc)</label>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="hidden" name="cv-url" />
+                                            <input type="file" class="hidden-file-input" style="display:none;" onchange="handleFileUpload(this, 'docs')">
+                                            <div style="margin-top: 15px; display: flex; align-items: center; gap: 15px;">
+                                                <button type="button" class="btn-cms btn-xs" onclick="$(this).closest('.row, .form-group, .admin-card').find('input[type=file]').click()">Upload New CV</button>
+                                                <a href="" id="current-cv-link" target="_blank" class="btn-cms btn-xs" style="border-color: #00009C; color: #00009C; display: none; text-decoration: none;">
+                                                    <i class="fa fa-file-pdf-o"></i> View Current CV
+                                                </a>
+                                            </div>
+                                            <p class="help-block" style="font-size: 11px; margin-top: 10px;">This file will be linked to the "Grab A Copy" button on your site.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Save Indicator Bar -->
+        <div class="save-bar visible" id="save-bar">
+            <div class="container text-center">
+                <span id="status-text" style="color: rgba(255,255,255,0.7); font-size: 14px; margin-right: 20px;">All changes are local until you save.</span>
+                <button class="btn-cms" id="save-all-btn" style="border-color: #fff; color: #fff;">Commit & Push Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/github-api.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

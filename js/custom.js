@@ -1,4 +1,4 @@
-$(function() {
+window.initAnimations = function() {
 	/* Intro */
 	$('.wp1').waypoint(function() {
 		$('.wp1').addClass('animated fadeIn');
@@ -46,12 +46,13 @@ $(function() {
 	}, {
 		offset: '75%'
 	});
+};
 
-
-	// for preloader
-	// setTimeout(function(){
-	// 	$('body').addClass('loaded');
-	// }, 2800);
+$(function() {
+    // for preloader
+    // setTimeout(function(){
+    // 	$('body').addClass('loaded');
+    // }, 2800);
 
     // jQuery to collapse the navbar on scroll
     $(window).scroll(function() {
@@ -84,5 +85,4 @@ $(function() {
     $("#to-top").mouseout(function() {
         $("#to-top-copy").animate({opacity: "0"}, "slow");
     });
-
 });
