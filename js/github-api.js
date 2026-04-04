@@ -1,7 +1,7 @@
 const GITHUB_CONFIG = {
     owner: 'GitByG4v',
     repo: 'Portfolio',
-    path: 'Portfolio/data/content.json',
+    path: 'data/content.json',
     branch: 'main'
 };
 
