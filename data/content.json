@@ -1,46 +1,46 @@
 {
     "hero": {
-        "title": "Hi, I'm Gavaskar",
+        "title": "Hi,  I'm Gavaskar",
         "subtitle": "Aspiring Software Engineer"
     },
     "about": {
-        "title": "A Little Bit About Me",
+        "title": "The Person Behind the Code",
         "image": "img/headshot1-square4.png",
-        "description": "Hi! I'm Gavaskar, a Computer Science intern passionate about Full Stack Development, UI/UX Design, and DevOps. Currently, I'm a third-year student at <a href=\"https://www.tc.esn.ac.lk\" target=\"_blank\">Eastern University, Trincomalee Campus</a>, pursuing a degree in <a href=\"https://dcs.tc.esn.ac.lk\" target=\"_blank\">Computer Science</a>. I love creating engaging digital experiences, building scalable web apps, and exploring innovative solutions through design and development.<br><br>Outside of tech, I enjoy music, traveling, and discovering new places."
+        "description": "Hi, I’m Gavaskar — a third-year Computer Science student at <a href=\"https://www.tc.esn.ac.lk\" target=\"_blank\">Eastern University, Trincomalee Campus</a>. I love turning ideas into small projects that actually work.<br><br> I’ve worked on a microservices-based medicinal plant system and a student accommodation app. Through these, I learned to think about how things work making apps that don’t just run, but run well.<br><br>I build websites and web apps with JavaScript, HTML, CSS, MERN stack, focusing on clean, responsive UI/UX. I handle deployment, perform testing, and ensure apps scale reliably."
     },
     "tldr": [
         {
-            "icon": "fa-keyboard-o",
-            "title": "Computer Science Intern"
-        },
-        {
-            "icon": "fa-pencil",
-            "title": "UI/UX Designer"
-        },
-        {
-            "icon": "fa-tree",
+            "icon": "fa-code",
             "title": "Full Stack Developer"
+        },
+        {
+            "icon": "fa-database",
+            "title": "Backend Developer"
+        },
+        {
+            "icon": "fa-paint-brush ",
+            "title": "UX-Driven Developer"
         }
     ],
     "services": [
         {
-            "icon": "fa-laptop",
-            "title": "UI/UX Design",
-            "description": "I design intuitive and responsive interfaces for web and mobile applications. My work focuses on usability, accessibility, and applying HCI principles to create enjoyable digital experiences. I use tools like Figma for wireframing, prototyping, and user testing."
-        },
-        {
             "icon": "fa-code",
             "title": "Full Stack Development",
-            "description": "I develop web applications using technologies like React.js, Node.js, Express.js, MongoDB, PHP, SQL, and FastAPI. I focus on clean, maintainable code and building scalable, responsive solutions with modern frameworks and DevOps tools."
+            "description": "I build scalable web applications using MERN stack and FastAPI. I focus on clean architecture, RESTful APIs, and responsive UI design."
         },
         {
-            "icon": "fa-cogs",
-            "title": "IT & DevOps",
-            "description": "I have hands-on experience in Linux system administration, Docker, Kubernetes, and Infrastructure as Code (IaC). I manage virtualized environments, troubleshoot systems, and deploy applications efficiently for both learning projects and real-world use cases."
+            "icon": "fa-server",
+            "title": "Backend & API Design",
+            "description": "I architect high-performance RESTful APIs and secure authentication systems. I’m skilled in optimizing database queries and designing data models that ensure system integrity"
+        },
+        {
+            "icon": "fa-laptop",
+            "title": "Frontend Development",
+            "description": "I create modern, responsive interfaces using React.js and Tailwind CSS with a focus on performance and usability."
         }
     ],
     "experience": {
-        "description": "I have experience in web development, UI/UX design, and IT projects, with hands-on work in full-stack applications, DevOps tools, and responsive design. I'm passionate about building innovative digital solutions and continuously learning in this fast-evolving tech industry.",
+        "description": "I have hands-on experience managing the full development lifecycle from designing high-fidelity prototypes in Figma to implementing full-stack solutions. My work includes developing CRUD-based systems, architecting RESTful APIs, and exploring microservices. I am committed to writing clean code using version control and deploying reliable software that solves real-world challenges",
         "skills": [
             {
                 "img": "img/skills/html.png",
@@ -70,14 +70,8 @@
                 "img": "img/skills/figma.png",
                 "title": "Figma"
             },
-            {
-                "img": "img/skills/docker.png",
-                "title": "Docker"
-            },
-            {
-                "img": "img/skills/kubernetes.png",
-                "title": "Kubernetes"
-            },
+            {},
+            {},
             {
                 "img": "img/skills/react.png",
                 "title": "React"
@@ -102,16 +96,13 @@
                 "img": "img/skills/php.png",
                 "title": "PHP"
             },
-            {
-                "img": "https://raw.githubusercontent.com/GitByG4v/Portfolio/main/img/uploads/1775319499775_je8057fd56-jenkins-logo-file-jenkins-logo-with-title-svg-wikimedia-commons.png",
-                "title": "https://raw.githubusercontent.com/GitByG4v/Portfolio/main/img/uploads/1775319499775_je8057fd56-jenkins-logo-file-jenkins-logo-with-title-svg-wikimedia-commons.png"
-            }
+            {}
         ]
     },
     "achievements": [
         {
             "type": "achievement",
-            "image": "img/achivements/ach1.jpg",
+            "image": "https://raw.githubusercontent.com/GitByG4v/Portfolio/main/img/uploads/1775326448898_544974763_1183444993814003_6013777673796124311_n.jpg",
             "emoji": "",
             "title": "Finalist - Yarl Geek Challenge 2025",
             "subtitle": "Senior - (Season 14)",
@@ -131,7 +122,7 @@
             "emoji": "",
             "title": "Linux Systems Administration and DevOps Engineering",
             "subtitle": "Provider -WSO2",
-            "description": "Grateful for the opportunity to learn hands-on skills in Linux, Docker, Kubernetes, CI/CD, and microservices.\n\nCourse Duration: June,2025 - January,2026"
+            "description": "Grateful for the opportunity to learn hands-on skills in Linux, Docker, Kubernetes, CI/CD, and microservices.\n\nCourse Duration: June - Dec,2025"
         }
     ],
     "projects": [
@@ -167,7 +158,7 @@
             "image": "img/Desktop_HomePage.jpeg",
             "title": "Medicinal Plant ID System",
             "tech": "Final Year Project",
-            "description": "Microservices-based ML application for identifying medicinal plants with multilingual data and a web interface. Project ongoing as a final year research project.",
+            "description": "Microservices-based ML application for identifying medicinal plants with multilingual data and a web interface. A final year research project.",
             "sourceLink": "https://github.com/GitByG4v/medicinal-plant-microservices.git",
             "visitLink": "#"
         },
@@ -234,8 +225,8 @@
     ],
     "backgrounds": {
         "hero": "https://raw.githubusercontent.com/GitByG4v/Portfolio/main/img/uploads/1775319406577_dark-background-abstract-background-network-3d-background-7680x4320-8324.png",
-        "resume": "img/laptop-blur.jpg",
-        "cv_url": "https://raw.githubusercontent.com/GitByG4v/Portfolio/main/img/docs/1775318804655_Resume_G.Gavaskar%20-%20Software_engineer_Intern.pdf"
+        "resume": "https://raw.githubusercontent.com/GitByG4v/Portfolio/main/img/uploads/1775327413712_piclumen-1735761183563.png",
+        "cv_url": "https://raw.githubusercontent.com/GitByG4v/Portfolio/main/img/docs/1775327391221_SoftwareEngineer_Intern%20-Gavaskar.pdf"
     },
     "footer": {
         "copyright": "Gavaskar 2026"
