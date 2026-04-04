@@ -254,10 +254,14 @@ $(function() {
         $('#experience-description').text(exp.description);
         const container = $('#skills-container');
         container.empty();
-        exp.skills.forEach(skill => {
-            container.append(`
-                <div class="tech-item"><img src="${skill.img}" alt="${skill.title}" title="${skill.title}"></div>`);
-        });
+        if (exp.skills && Array.isArray(exp.skills)) {
+            exp.skills.forEach(skill => {
+                if (skill && skill.img && skill.img.trim() !== "" && skill.img !== "undefined") {
+                    container.append(`
+                        <div class="tech-item"><img src="${skill.img}" alt="${skill.title || ''}" title="${skill.title || ''}"></div>`);
+                }
+            });
+        }
     }
 
     function renderAchievements(ach) {

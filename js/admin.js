@@ -426,7 +426,14 @@ $(function () {
     window.addAchievement = () => { currentData.achievements.push({ type: 'achievement', image: '', emoji: '🏆', title: 'New', subtitle: '', description: '' }); renderAchievementsList(currentData.achievements); };
     window.addProject = () => { currentData.projects.push({ id: 'newModal' + Date.now(), image: '', title: 'New Project', description: '', tech: '', visitLink: '#', sourceLink: '' }); renderProjectsList(currentData.projects); };
     window.addSocial = () => { currentData.social.push({ id: 'new', icon: 'fa-link', link: '' }); renderSocialList(currentData.social); };
-    window.removeItem = (btn) => { $(btn).closest('.admin-card, .skill-item, .social-item, .service-item, .tldr-item').fadeOut(300, function () { $(this).remove(); }); };
+    window.removeItem = (btn) => { 
+        let $item = $(btn).closest('.skill-item, .tldr-item, .service-item, .achievement-item, .project-item, .social-item, .admin-card');
+        // If it's a skill logo, we need to remove the col-md-4 wrapper (.skill-item)
+        if ($item.hasClass('admin-card') && $item.parent().hasClass('skill-item')) {
+            $item = $item.parent();
+        }
+        $item.addClass('removing').fadeOut(300, function () { $(this).remove(); }); 
+    };
 
     // --- Save Logic ---
 
@@ -459,12 +466,12 @@ $(function () {
                 footer: { copyright: $('#footer-form [name="copyright"]').val() }
             };
 
-            $('.tldr-item').each(function () { updatedData.tldr.push({ icon: $(this).find('.item-icon').val(), title: $(this).find('.item-title').val() }); });
-            $('.service-item').each(function () { updatedData.services.push({ icon: $(this).find('.srv-icon').val(), title: $(this).find('.srv-title').val(), description: $(this).find('.srv-desc').val() }); });
-            $('.skill-item').each(function () { updatedData.experience.skills.push({ img: $(this).find('.skill-img').val(), title: $(this).find('.skill-title').val() }); });
-            $('.achievement-item').each(function () { updatedData.achievements.push({ type: 'achievement', image: $(this).find('.ach-image').val(), emoji: $(this).find('.ach-emoji').val(), title: $(this).find('.ach-title').val(), subtitle: $(this).find('.ach-subtitle').val(), description: $(this).find('.ach-desc').val() }); });
-            $('.project-item').each(function () { updatedData.projects.push({ id: $(this).find('.proj-id').val(), image: $(this).find('.proj-image').val(), title: $(this).find('.proj-title').val(), tech: $(this).find('.proj-tech').val(), description: $(this).find('.proj-desc').val(), sourceLink: $(this).find('.proj-source').val(), visitLink: "#" }); });
-            $('.social-item').each(function () { updatedData.social.push({ id: $(this).find('.soc-id').val(), icon: $(this).find('.soc-icon').val(), link: $(this).find('.soc-link').val() }); });
+            $('.tldr-item:not(.removing)').each(function () { updatedData.tldr.push({ icon: $(this).find('.item-icon').val(), title: $(this).find('.item-title').val() }); });
+            $('.service-item:not(.removing)').each(function () { updatedData.services.push({ icon: $(this).find('.srv-icon').val(), title: $(this).find('.srv-title').val(), description: $(this).find('.srv-desc').val() }); });
+            $('.skill-item:not(.removing)').each(function () { updatedData.experience.skills.push({ img: $(this).find('.skill-img').val(), title: $(this).find('.skill-title').val() }); });
+            $('.achievement-item:not(.removing)').each(function () { updatedData.achievements.push({ type: 'achievement', image: $(this).find('.ach-image').val(), emoji: $(this).find('.ach-emoji').val(), title: $(this).find('.ach-title').val(), subtitle: $(this).find('.ach-subtitle').val(), description: $(this).find('.ach-desc').val() }); });
+            $('.project-item:not(.removing)').each(function () { updatedData.projects.push({ id: $(this).find('.proj-id').val(), image: $(this).find('.proj-image').val(), title: $(this).find('.proj-title').val(), tech: $(this).find('.proj-tech').val(), description: $(this).find('.proj-desc').val(), sourceLink: $(this).find('.proj-source').val(), visitLink: "#" }); });
+            $('.social-item:not(.removing)').each(function () { updatedData.social.push({ id: $(this).find('.soc-id').val(), icon: $(this).find('.soc-icon').val(), link: $(this).find('.soc-link').val() }); });
 
             await githubApi.updateFile(updatedData);
             status.text('Successfully saved and deployed!').css('color', '#4caf50');
