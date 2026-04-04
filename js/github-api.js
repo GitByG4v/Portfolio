@@ -67,7 +67,8 @@ class GitHubAPI {
             method: 'PUT',
             headers: {
                 'Authorization': `token ${this.token}`,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/vnd.github.v3+json'
             },
             body: JSON.stringify({
                 message: `Upload file: ${fileName}`,

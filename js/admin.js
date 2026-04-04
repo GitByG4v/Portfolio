@@ -222,11 +222,12 @@ $(function () {
         const file = input.files[0];
         if (!file) return;
 
-        const $btn = $(input).next('div').find('button');
-        if ($btn.length === 0) $btn = $(input).next('button'); // Fallback for simple layouts
+        let $btn = $(input).next('button'); 
+        if ($btn.length === 0) $btn = $(input).parent().find('button');
+        if ($btn.length === 0) $btn = $(input).closest('.row, .admin-card').find('button'); 
 
         const originalHtml = $btn.html();
-        $btn.addClass('loading').html('<div class="spinner"></div> Uploading...');
+        $btn.addClass('loading').html('<i class="fa fa-spinner fa-spin"></i> Uploading...');
 
         const status = $('#status-text');
         status.text(`Uploading ${file.name}...`).css('color', '#fff');
