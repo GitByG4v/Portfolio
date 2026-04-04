@@ -113,7 +113,7 @@
             "type": "achievement",
             "image": "img/achivements/ach1.jpg",
             "emoji": "",
-            "title": "Finalist - Yarl Geek Challenge",
+            "title": "Finalist - Yarl Geek Challenge 2025",
             "subtitle": "Senior - (Season 14)",
             "description": "A prestigious hackathon where our team <b>TRISOLUTION</b> developed and pitched an innovative tech solution, securing a spot in the grand finale."
         },
@@ -129,7 +129,7 @@
             "type": "achievement",
             "image": "",
             "emoji": "",
-            "title": "WSO2 certification",
+            "title": "WSO2 certification 2026",
             "subtitle": "",
             "description": ""
         }
@@ -238,6 +238,6 @@
         "cv_url": "resume2025.pdf"
     },
     "footer": {
-        "copyright": "Gavaskar 2025"
+        "copyright": "Gavaskar 2026"
     }
 }
