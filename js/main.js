@@ -155,7 +155,7 @@ $(function() {
     async function initPortfolio() {
         let data = DEFAULT_DATA;
         try {
-            const response = await fetch(JSON_PATH);
+            const response = await fetch(JSON_PATH + '?t=' + Date.now());
             if (response.ok) {
                 data = await response.json();
                 console.log('Loaded data from content.json');

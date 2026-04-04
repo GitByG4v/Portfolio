@@ -237,7 +237,7 @@ $(function () {
                 const base64 = e.target.result.split(',')[1];
                 const downloadUrl = await githubApi.uploadFile(base64, `${Date.now()}_${file.name}`, folder);
 
-                const $input = $(input).closest('.row, .admin-card').find('input[type="text"]');
+                const $input = $(input).closest('.row, .admin-card').find('.image-input, input[name="cv-url"], input[type="text"]');
                 $input.val(downloadUrl).trigger('change');
 
                 if ($input.attr('name') === 'cv-url') {
