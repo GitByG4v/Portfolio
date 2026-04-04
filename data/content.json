@@ -103,8 +103,8 @@
                 "title": "PHP"
             },
             {
-                "img": "",
-                "title": "Jenkins"
+                "img": "https://raw.githubusercontent.com/GitByG4v/Portfolio/main/img/uploads/1775319499775_je8057fd56-jenkins-logo-file-jenkins-logo-with-title-svg-wikimedia-commons.png",
+                "title": "https://raw.githubusercontent.com/GitByG4v/Portfolio/main/img/uploads/1775319499775_je8057fd56-jenkins-logo-file-jenkins-logo-with-title-svg-wikimedia-commons.png"
             }
         ]
     },
@@ -127,11 +127,11 @@
         },
         {
             "type": "achievement",
-            "image": "",
-            "emoji": "",
-            "title": "WSO2 certification 2026",
-            "subtitle": "",
-            "description": ""
+            "image": "https://raw.githubusercontent.com/GitByG4v/Portfolio/main/img/uploads/1775319531238_WhatsApp%20Image%202026-03-09%20at%201.35.27%20PM.jpeg",
+            "emoji": "https://raw.githubusercontent.com/GitByG4v/Portfolio/main/img/uploads/1775319531238_WhatsApp%20Image%202026-03-09%20at%201.35.27%20PM.jpeg",
+            "title": "Linux Systems Administration and DevOps Engineering",
+            "subtitle": "Provider -WSO2",
+            "description": "Grateful for the opportunity to learn hands-on skills in Linux, Docker, Kubernetes, CI/CD, and microservices.\n\nCourse Duration: June,2025 - January,2026"
         }
     ],
     "projects": [
@@ -233,7 +233,7 @@
         }
     ],
     "backgrounds": {
-        "hero": "img/mountain-dusk.jpeg",
+        "hero": "https://raw.githubusercontent.com/GitByG4v/Portfolio/main/img/uploads/1775319406577_dark-background-abstract-background-network-3d-background-7680x4320-8324.png",
         "resume": "img/laptop-blur.jpg",
         "cv_url": "https://raw.githubusercontent.com/GitByG4v/Portfolio/main/img/docs/1775318804655_Resume_G.Gavaskar%20-%20Software_engineer_Intern.pdf"
     },
