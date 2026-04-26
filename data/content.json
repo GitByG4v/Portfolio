@@ -70,8 +70,14 @@
                 "img": "img/skills/figma.png",
                 "title": "Figma"
             },
-            {},
-            {},
+            {
+                "img": "undefined",
+                "title": "undefined"
+            },
+            {
+                "img": "undefined",
+                "title": "undefined"
+            },
             {
                 "img": "img/skills/react.png",
                 "title": "React"
@@ -96,7 +102,10 @@
                 "img": "img/skills/php.png",
                 "title": "PHP"
             },
-            {}
+            {
+                "img": "undefined",
+                "title": "undefined"
+            }
         ]
     },
     "achievements": [
@@ -224,9 +233,9 @@
         }
     ],
     "backgrounds": {
-        "hero": "https://raw.githubusercontent.com/GitByG4v/Portfolio/main/img/uploads/1775319406577_dark-background-abstract-background-network-3d-background-7680x4320-8324.png",
+        "hero": "https://raw.githubusercontent.com/GitByG4v/Portfolio/main/img/uploads/1777199067159_225676.jpg",
         "resume": "https://raw.githubusercontent.com/GitByG4v/Portfolio/main/img/uploads/1775328279876_ps4-controller-playstation-4-controller-gamepad-game-3840x2160-8380.png",
-        "cv_url": "https://raw.githubusercontent.com/GitByG4v/Portfolio/main/img/docs/1775327391221_SoftwareEngineer_Intern%20-Gavaskar.pdf"
+        "cv_url": "https://raw.githubusercontent.com/GitByG4v/Portfolio/main/img/docs/1777199141606_softwareEngineerIntern_Gavaskar.pdf"
     },
     "footer": {
         "copyright": "Gavaskar 2026"
